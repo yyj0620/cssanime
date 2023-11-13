@@ -4,23 +4,47 @@
     --clr-darkylw: #d07219;
     --clr-wht: #fff;
     --clr-gray: #2c2c2c;
+    --clr-bgray: #696969;
+    --clr-bgray2: #343434;
+    --clr-bgray3: #4a4a4a;
+    --clr-wgray: #e6e6e6;
+    --clr-wgray2: #cbcbcb;
+    --clr-wgray3: #ffffff;
     --clr-lightbrn: #ef926b;
+    --clr-lightblu: #66c6d0;
 }
 
 body {
     background-color: var(--clr-ny);
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-size: 0;
 }
 
-.container {
+.frame {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    margin: 0 auto;
+    width: 1400px;
+    height: 100vh;
+    border: 1px solid var(--clr-wht);
+    overflow: hidden;
+}
+
+
+/* -----cat----- */
+
+.cat__container {
     /* border: 1px solid var(--clr-wht); */
     height: 200px;
     width: 350px;
     position: absolute;
+    margin: auto;
     transform: translate(-50%, -50%);
-    left: 50%;
+    left: 15%;
     top: 50%;
 }
 
@@ -187,4 +211,202 @@ body {
     50% {
         transform: scaleX(0.7);
     }
+}
+
+
+
+/* ----------------iso------------------------------- */
+.iso__container {
+    /* background-color: var(--clr-lightblu); */
+    height: 390px;
+    width: 300px;
+    position: absolute;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    cursor: pointer;
+}
+
+.black>.left{
+    background-color: var(--clr-bgray3);
+}
+
+.left{
+    height: 150px;
+    width: 40px;
+    transform-origin: 0 0;
+    transform: rotate(90deg) skewX(-30deg) scaleY(0.864);
+}
+
+.black>.right{
+    background-color: var(--clr-bgray2);
+}
+
+.right{
+    height: 40px;
+    width: 150px;
+    transform-origin: 0 0;
+    transform: rotate(-30deg) skewX(-30deg) scaleY(0.864);
+    position: relative;
+    bottom: 150px;
+}
+
+.black>.top{
+    background-color: var(--clr-bgray);
+}
+
+.top {
+    height: 150px;
+    width: 150px;
+    transform-origin: 0 0;
+    transform: rotate(210deg) skewX(-30deg) scaleY(0.864);
+    position: relative;
+    bottom: 190px;
+}
+
+.white>.left {
+    background-color: var(--clr-wgray);
+}
+
+.white>.right {
+    background-color: var(--clr-wgray2);
+}
+
+.white>.top{
+    background-color: var(--clr-wgray3);
+}
+
+.stack1, .stack2, .stack3, .stack4, .stack5, .stack6 {
+    position: relative;
+    left: 150px;
+    transition: 0.5s;
+}
+
+.stack1 {
+    top: 150px;
+}
+.stack2 {
+    bottom: 150px;
+    z-index: -1;
+}
+.stack3 {
+    bottom: 450px;
+    z-index: -2;
+}
+.stack4 {
+    bottom: 750px;
+    z-index: -3;
+}
+.stack5 {
+    bottom: 1050px;
+    z-index: -4;
+}
+.stack6 {
+    bottom: 1350px;
+    z-index: -5;
+}
+
+.iso__container:hover .stack1{
+    transform: translate(-130px, 75px);
+}
+.iso__container:hover .stack3{
+    transform: translate(-130px, 75px);
+}
+.iso__container:hover .stack5{
+    transform: translate(-130px, 75px);
+}
+.iso__container:hover .stack2{
+    transform: translate(130px, 75px);
+}
+.iso__container:hover .stack4{
+    transform: translate(130px, 75px);
+}
+.iso__container:hover .stack6{
+    transform: translate(130px, 75px);
+}
+
+
+/* -----loader----- */
+
+.loader__container {
+    /* background-color: var(--clr-lightblu); */
+    position: absolute;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    right: 8%;
+    top: 50%;
+    cursor: pointer;
+}
+
+.loader {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    /* border: 1px solid var(--clr-wht); */
+}
+
+.loader span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(calc(18deg * var(--i)));
+}
+
+.loader span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    background: var(--clr-wht);
+    border-radius: 50%;
+    transform:  scale(0);
+    animation: loader 2s linear infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes loader {
+    0%{
+        transform:  scale(0);
+    }
+    10%{
+        transform:  scale(1.2);
+    }
+    80%,100%{
+        transform:  scale(0);
+    }
+}
+
+.rocket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: rotating 2s linear infinite;
+    animation-delay: -1s;
+}
+@keyframes rotating {
+    0% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(370deg);
+    }
+}
+
+
+.rocket::before {
+    content: '\e518';
+    font-family: FontAwesome;
+    position: absolute;
+    top: 80px;
+    left: 85px;
+    color: var(--clr-wht);
+    font-size: 54px;
+    transform: rotate(225deg);
 }
